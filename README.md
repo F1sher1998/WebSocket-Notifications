@@ -1,48 +1,100 @@
-This is a very basic example of a realtime chatting system
+# Realtime Chatting System (Basic Example)
 
-Tech Stack:
-1.Node.js, 
-2.built-in package "http"
-3.external package "websocket"
+This is a very basic example of a realtime chatting system.
 
+---
 
-Basic Functionality:
-    Enables a real time message pushing by using websocket to simulate recieving a message inside a chat.
+## Tech Stack
 
+1. Node.js  
+2. Built-in package: `http`  
+3. External package: `websocket`
 
-How to use it
+---
 
-1. Install necessary package by writing: "npm i" in your console
+## Basic Functionality
 
-## For the nex tstep you will need to split your terminal window to have two separate console prompts!
+Enables real-time message pushing by using WebSocket to simulate receiving messages inside a chat.
 
-2. In order to be able to execute necessary commands first "node" in your terminal to enter Node REPL mode
+---
 
-3. Once in REPL mode insert this code into your terminal: "let ws = new WebSocket("ws://localhost:8080")"
+## How to Use It
 
-## (you can do each step into one terminal at a time or both at once, doesnt matter)
+### 1. Install Dependencies
 
-## After you inserted command from stage 3 you should see "undefined" message on the next line, otherwise check if you copied code correctly
+Install the necessary packages by running the following command in your console:
 
-4. To start listening to a conversation in real time insert this code into your terminal: "ws.onmessage = message => console.log(`${message.data}`)"
+```bash
+npm i
+```
 
-5. Now do the same for the second terminal if you haven't yet!
+---
 
-## At this point if nothing went wrong you should have any errors or issues, if so then, great job!
+### 2. Prepare Your Terminal
 
-6. Now use this command to start chatting, this command will send message to the chat: "ws.send("Your message here..")"
+You will need to split your terminal window so you have **two separate console prompts**.
 
+---
 
-How it works in deeper detail
+### 3. Enter Node REPL Mode
 
-After we import "http" and "websocket" we create an http server instance that websocket instance will take as an argument inside its own instance to work on port of our HTPP server!
+In each terminal, enter Node REPL mode by running:
 
-We also create an empty array called "connections" to store of our current connected users.
+```bash
+node
+```
 
-Next step is to establish actions that will happen when certain events occur
+---
 
-When websocket receives a "request" it creates an instance of a connected user that takes 2 parameters (AcceptedProtocol and Allowedorigin), we write "request.origin" to track where the requests came from.
+### 4. Create a WebSocket Connection
 
-Next when the connection recieves a "message" we send this message to EVERY OTHER CONNECTION AKA a user, notice that we use "connection.socket.remotePort" as a unique identifier in order to give every user appropriate ID.
+Once in REPL mode, insert the following code into your terminal:
 
-In the final step we push a new connection aka user to our array of connections and then we send a message about that connection to every other user.
+```js
+let ws = new WebSocket("ws://localhost:8080")
+```
+
+You can perform this step in one terminal at a time or both at once.
+
+After inserting this command, you should see an `undefined` message on the next line. If not, double-check that the code was copied correctly.
+
+---
+
+### 5. Start Listening for Messages
+
+To listen to the conversation in real time, insert the following code into your terminal:
+
+```js
+ws.onmessage = message => console.log(`${message.data}`)
+```
+
+Repeat this step in the second terminal if you haven’t done so already.
+
+At this point, if nothing went wrong, you should not see any errors. If that’s the case, great job.
+
+---
+
+### 6. Send Messages
+
+Use the following command to start chatting. This command sends a message to the chat:
+
+```js
+ws.send("Your message here..")
+```
+
+---
+
+## How It Works (Deeper Detail)
+
+After importing `http` and `websocket`, an HTTP server instance is created. This HTTP server is passed as an argument to the WebSocket instance so it can operate on the same port as the HTTP server.
+
+An empty array called `connections` is created to store all currently connected users.
+
+Next, actions are defined for specific events:
+
+- When the WebSocket receives a `request`, it creates a new connected user instance. This instance takes two parameters: `AcceptedProtocol` and `AllowedOrigin`. The value `request.origin` is used to track where the request came from.
+
+- When a connection receives a `message`, that message is sent to every other connection (user). The value `connection.socket.remotePort` is used as a unique identifier to assign each user an appropriate ID.
+
+- In the final step, the new connection (user) is pushed into the `connections` array, and a message announcing the new connection is sent to every other user.
+
