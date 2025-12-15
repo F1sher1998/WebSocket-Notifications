@@ -10,26 +10,27 @@ Basic Functionality:
     Enables a real time message pushing by using websocket to simulate recieving a message inside a chat.
 
 
-How to use it:
-    1. Install necessary package by writing: "npm i" in your console
+How to use it
 
-    ## For the nex tstep you will need to split your terminal window to have two separate console prompts!
+1. Install necessary package by writing: "npm i" in your console
 
-    2. In order to be able to execute necessary commands first "node" in your terminal to enter Node REPL mode
+## For the nex tstep you will need to split your terminal window to have two separate console prompts!
 
-    3. Once in REPL mode insert this code into your terminal: "let ws = new WebSocket("ws://localhost:8080")"
+2. In order to be able to execute necessary commands first "node" in your terminal to enter Node REPL mode
 
-    ## (you can do each step into one terminal at a time or both at once, doesnt matter)
+3. Once in REPL mode insert this code into your terminal: "let ws = new WebSocket("ws://localhost:8080")"
 
-    ## After you inserted command from stage 3 you should see "undefined" message on the next line, otherwise check if you copied code correctly
+## (you can do each step into one terminal at a time or both at once, doesnt matter)
 
-    4. To start listening to a conversation in real time insert this code into your terminal: "ws.onmessage = message => console.log(`${message.data}`)"
+## After you inserted command from stage 3 you should see "undefined" message on the next line, otherwise check if you copied code correctly
 
-    5. Now do the same for the second terminal if you haven't yet!
+4. To start listening to a conversation in real time insert this code into your terminal: "ws.onmessage = message => console.log(`${message.data}`)"
 
-    ## At this point if nothing went wrong you should have any errors or issues, if so then, great job!
-    
-    6. Now use this command to start chatting, this command will send message to the chat: "ws.send("Your message here..")"
+5. Now do the same for the second terminal if you haven't yet!
+
+## At this point if nothing went wrong you should have any errors or issues, if so then, great job!
+
+6. Now use this command to start chatting, this command will send message to the chat: "ws.send("Your message here..")"
 
 
 How it works in deeper detail
